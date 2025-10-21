@@ -23,7 +23,7 @@
         });
     })();
 
-function goToPage2() {
-      // Redirect to page2.html
-      window.location.href = "2nd page/page2.html";
-    }
+// function goToPage2() {
+//       // Redirect to page2.html
+//     //   window.location.href = "2nd page/page2.html";
+//     }
