@@ -1,0 +1,31 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root{
+    --bg-a: #f6d365;
+    --bg-b: #fda085;
+}
+
+
+
+body{
+    background: radial-gradient(1200px 600px at 10% 10%, rgba(255,238,245,0.6), transparent 20%),
+                linear-gradient(135deg, var(--bg-a), var(--bg-b));
+    min-height: 100vh;
+    color: #222;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.video video{
+    height: 500px;
+    width: 90vw;
+}

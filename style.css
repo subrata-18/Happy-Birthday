@@ -1,0 +1,182 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root{
+    --bg-a: #f6d365;
+    --bg-b: #fda085;
+    --card-bg: #ffffff;
+    --accent: #ff6fa3;
+    --muted: #6b6b6b;
+    --glass: rgba(255,255,255,0.6);
+    --shadow: 0 10px 30px rgba(23,23,23,0.12);
+}
+
+/* body background: soft warm gradient */
+body{
+    background: radial-gradient(1200px 600px at 10% 10%, rgba(255,238,245,0.6), transparent 20%),
+                linear-gradient(135deg, var(--bg-a), var(--bg-b));
+    min-height: 100vh;
+    color: #222;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.center{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:100vh;
+    width: 100vw;
+    
+}
+
+.frontpage {
+
+    height: 90vh;
+    width: 90vw;
+    border: 2px solid black;
+    border-radius: 20px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.98), var(--card-bg));
+    border: 1px solid rgba(0,0,0,0.06);
+    box-shadow: var(--shadow);
+    padding: 32px;
+    transform: translateZ(0); /* enable GPU */
+    transition: transform 260ms ease, box-shadow 260ms ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    overflow: hidden;
+    
+}
+.img{
+    height: 300px;
+    width: 300px;
+    position: relative;
+    display: grid;
+    place-items: center;
+}
+
+/* decorative ring using outline and soft background */
+.img::before{
+    content: "";
+    position: absolute;
+    inset: -12px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+    box-shadow: 0 6px 30px rgba(120,60,120,0.08);
+    z-index: 0;
+    pointer-events: none;
+    transition: transform 300ms ease;
+}
+
+/* image itself */
+.img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    position: relative;
+    z-index: 1;
+    transform-origin: center;
+    animation: gentle-pulse 6s ease-in-out infinite;
+}
+
+/* small pulsing animation that's subtle */
+@keyframes gentle-pulse{
+    0% { transform: scale(1); }
+    50% { transform: scale(1.007); }
+    100% { transform: scale(1); }
+}
+
+/* button: colorful pill button with hover/active states */
+.btn button{
+    padding: 12px 22px;
+    border-radius: 999px;
+    border: none;
+    background: linear-gradient(90deg, #ff9ab3 0%, #ff66a3 50%, #ff7ab6 100%);
+    color: white;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    cursor: pointer;
+    box-shadow: 0 8px 22px rgba(255,80,140,0.14);
+    transition: transform 180ms ease, box-shadow 180ms ease, opacity 180ms ease;
+    outline: none;
+}
+.btn button:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 16px 40px rgba(255,80,140,0.16);
+}
+.btn button:active{
+    transform: translateY(0);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+.btn button:focus{
+    box-shadow: 0 0 0 6px rgba(255,120,170,0.14);
+}
+
+/* simple surprise area */
+.surprise-area{
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 50;
+    display: grid;
+    place-items: center;
+}
+
+/* surprise message: centered, brief pop */
+.surprise-msg{
+    background: rgba(255,255,255,0.96);
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-weight: 700;
+    color: #222;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    transform: scale(0.9);
+    opacity: 0;
+    animation: msg-pop 260ms cubic-bezier(.2,.9,.2,1) forwards;
+    pointer-events: none;
+}
+
+.surprise-msg.hide{
+    animation: msg-hide 200ms ease forwards;
+}
+
+@keyframes msg-pop{
+    to { transform: scale(1); opacity: 1; }
+}
+@keyframes msg-hide{
+    to { transform: scale(0.95); opacity: 0; }
+}
+
+/* small button pop class triggered by script */
+.btn button.pop{
+    animation: btn-pop 260ms cubic-bezier(.2,.9,.2,1);
+}
+@keyframes btn-pop{
+    0%   { transform: translateY(0) scale(1); }
+    50%  { transform: translateY(-6px) scale(1.04); }
+    100% { transform: translateY(0) scale(1); }
+}
+
+/* responsive: scale down image on small screens while keeping layout */
+@media (max-width: 520px){
+    .frontpage{
+        width: 95vw;
+        height: auto;
+        padding: 20px;
+        gap: 14px;
+    }
+    .img{
+        width: 220px;
+        height: 220px;
+    }
+}
