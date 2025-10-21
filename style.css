@@ -97,7 +97,7 @@ body{
 }
 
 /* button: colorful pill button with hover/active states */
-.btn button{
+.btn {
     padding: 12px 22px;
     border-radius: 999px;
     border: none;
@@ -109,6 +109,10 @@ body{
     box-shadow: 0 8px 22px rgba(255,80,140,0.14);
     transition: transform 180ms ease, box-shadow 180ms ease, opacity 180ms ease;
     outline: none;
+}
+.btn a{
+    text-decoration: none;
+    color: white;
 }
 .btn button:hover{
     transform: translateY(-3px);
